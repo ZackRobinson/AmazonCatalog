@@ -10,6 +10,12 @@ class CatalogViewModel : ViewModel() {
 
     private val tag: String = "CatalogViewModel"
 
+    val num: Int = 9
+
+    val book: MutableLiveData<Book> by lazy {
+        MutableLiveData<Book>().also { loadBookWithRx() }
+    }
+
     val liveBooks: MutableLiveData<List<Book>> by lazy {
         MutableLiveData<List<Book>>().also { loadLiveBooksWithRx() }
     }
@@ -28,8 +34,12 @@ class CatalogViewModel : ViewModel() {
                 .subscribe { catalog -> this.liveBooks.setValue(catalog) }
     }
 
-    private fun loadLiveBooksWithCoroutines() {
-
+    private fun loadBookWithRx() {
+        catalogDisposable =
+            amazonApiService.getCatalog()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { catalog -> this.book.setValue(catalog?.get(0)) }
     }
 
 }

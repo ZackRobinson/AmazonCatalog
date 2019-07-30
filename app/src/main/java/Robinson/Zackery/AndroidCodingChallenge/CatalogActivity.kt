@@ -2,6 +2,7 @@ package Robinson.Zackery.AndroidCodingChallenge
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class CatalogActivity : AppCompatActivity() {
+
+    private val tag: String = "CatalogActivity"
 
     private lateinit var model: CatalogViewModel
 
@@ -25,7 +28,12 @@ class CatalogActivity : AppCompatActivity() {
             catalogAdapter.setBooks(catalog)
         }
 
+        val bookObserver = Observer<Book> { book ->
+            Log.d(tag, book.title)
+        }
+
         model.liveBooks.observe(this, catalogObserver)
+        model.book.observe(this, bookObserver)
 
         catalogAdapter = CatalogAdapter(this)
         catalogRecyclerView = findViewById(R.id.list)
@@ -34,5 +42,6 @@ class CatalogActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.button).setOnClickListener { TODO() }
     }
+
 
 }
