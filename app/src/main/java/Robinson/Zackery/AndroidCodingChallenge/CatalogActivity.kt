@@ -24,16 +24,16 @@ class CatalogActivity : AppCompatActivity() {
 
         model = ViewModelProviders.of(this).get(CatalogViewModel::class.java)
 
-        val catalogObserver = Observer<List<Book>> { catalog ->
-            catalogAdapter.setBooks(catalog)
-        }
-
         val bookObserver = Observer<Book> { book ->
             Log.d(tag, book.title)
         }
 
-        model.liveBooks.observe(this, catalogObserver)
+        val catalogObserver = Observer<List<Book>> { catalog ->
+            catalogAdapter.setBooks(catalog)
+        }
+
         model.book.observe(this, bookObserver)
+        model.liveBooks.observe(this, catalogObserver)
 
         catalogAdapter = CatalogAdapter(this)
         catalogRecyclerView = findViewById(R.id.list)

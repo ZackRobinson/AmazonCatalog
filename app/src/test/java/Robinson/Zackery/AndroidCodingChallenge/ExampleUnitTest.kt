@@ -1,6 +1,6 @@
 package Robinson.Zackery.AndroidCodingChallenge
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+//import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import io.reactivex.Observable
@@ -21,8 +21,8 @@ import java.util.concurrent.TimeUnit
 @RunWith(JUnit4::class)
 class CatalogViewModelUnitTests {
 
-    @get:Rule
-    val instantTaskExecutorRule = InstantTaskExecutorRule()
+//    @get:Rule
+//    val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     lateinit var cvm: CatalogViewModel
 
