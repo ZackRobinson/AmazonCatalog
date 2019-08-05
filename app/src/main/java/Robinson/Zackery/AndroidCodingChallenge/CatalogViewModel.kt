@@ -8,7 +8,7 @@ import io.reactivex.schedulers.Schedulers
 
 class CatalogViewModel : ViewModel() {
 
-    private val tag: String = "CatalogViewModel"
+    private val tag = "CatalogViewModel"
 
     val num: Int = 9
 
@@ -26,20 +26,20 @@ class CatalogViewModel : ViewModel() {
         AmazonApiService.create()
     }
 
-    private fun loadLiveBooksWithRx() {
-        catalogDisposable =
-            amazonApiService.getCatalog()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { catalog -> this.liveBooks.setValue(catalog) }
-    }
-
     private fun loadBookWithRx() {
         catalogDisposable =
             amazonApiService.getCatalog()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { catalog -> this.book.setValue(catalog?.get(0)) }
+    }
+
+    private fun loadLiveBooksWithRx() {
+        catalogDisposable =
+            amazonApiService.getCatalog()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { catalog -> this.liveBooks.setValue(catalog) }
     }
 
 }
