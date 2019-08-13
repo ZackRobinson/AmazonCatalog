@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
 
 class CatalogViewModel : ViewModel() {
 
@@ -40,6 +41,10 @@ class CatalogViewModel : ViewModel() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { catalog -> this.liveBooks.setValue(catalog) }
+    }
+
+    private fun loadLiveBooksWithCoroutines() {
+
     }
 
 }
