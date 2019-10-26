@@ -9,7 +9,7 @@ import retrofit2.http.GET
 interface AmazonApiService {
 
     @GET("books.json")
-    fun getCatalog(): Observable<List<Book>>
+    fun getProducts(): Observable<List<Product>>
 
     companion object {
         fun create(): AmazonApiService {
