@@ -1,6 +1,7 @@
 package Robinson.Zackery.AndroidCodingChallenge
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,6 +43,11 @@ class ProductsAdapter internal constructor(private var context: Context) :
             .error(R.drawable.ic_launcher_foreground)
             .into(holder.imageView)
 
+        holder.itemView.setOnClickListener{
+            val intent = Intent(holder.itemView.context, ProductsDetailActivity::class.java)
+            intent.putExtra("product", current)
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     internal fun setProducts(products: List<Product>) {

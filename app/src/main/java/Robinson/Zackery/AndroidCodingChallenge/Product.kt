@@ -1,3 +1,7 @@
 package Robinson.Zackery.AndroidCodingChallenge
 
-data class Product(val author: String, val imageURL: String, val title: String)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class Product(val title: String, val author: String?, val imageURL: String?): Parcelable
