@@ -1,5 +1,6 @@
 package Robinson.Zackery.AndroidCodingChallenge
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -22,6 +23,7 @@ class ProductsViewModel : ViewModel() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { x -> this.productsLiveData.value = x }
+                .also { Log.d(this.javaClass.simpleName, "loadProducts()") }
     }
 
 }

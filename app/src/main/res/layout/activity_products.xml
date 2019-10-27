@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
+        android:id="@+id/products_container"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
-        android:gravity="bottom"
+        android:background="#e0e0e0"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    <Button
-            android:id="@+id/button"
-            android:background="@android:color/darker_gray"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Accio!"/>
-
-</LinearLayout>
+        android:layout_height="match_parent"/>
