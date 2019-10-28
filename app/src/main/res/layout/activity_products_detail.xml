@@ -1,44 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ProductsDetailActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ProductsDetailActivity">
 
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@mipmap/ic_launcher"
-            android:id="@+id/detailImageView"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="8dp" android:layout_marginStart="8dp"/>
-    <TextView
-            tools:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/detailTitleView"
-            android:textColor="#4A4A4A"
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:srcCompat="@mipmap/ic_launcher"
+                android:id="@+id/detailImageView"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="8dp" android:layout_marginStart="8dp"/>
+        <TextView
+                tools:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/detailTitleView"
+                android:textColor="#4A4A4A"
 
-            app:layout_constrainedWidth="true"
-            android:fontFamily="sans-serif"
-            android:textStyle="bold"
-            android:textSize="12sp"
-            android:layout_marginStart="8dp" app:layout_constraintStart_toEndOf="@+id/detailImageView"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="16dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"/>
-    <TextView
-            tools:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/detailAuthorView"
-            android:fontFamily="sans-serif"
-            app:layout_constrainedWidth="true"
-            android:textColor="#4A4A4A"
-            android:textSize="11sp"
-            app:layout_constraintTop_toBottomOf="@+id/detailTitleView"
-            android:layout_marginStart="8dp" app:layout_constraintStart_toEndOf="@+id/detailImageView"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constrainedWidth="true"
+                android:fontFamily="sans-serif"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_marginStart="8dp" app:layout_constraintStart_toEndOf="@+id/detailImageView"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="16dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"/>
+        <TextView
+                tools:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/detailAuthorView"
+                android:fontFamily="sans-serif"
+                app:layout_constrainedWidth="true"
+                android:textColor="#4A4A4A"
+                android:textSize="11sp"
+                app:layout_constraintTop_toBottomOf="@+id/detailTitleView"
+                android:layout_marginStart="8dp" app:layout_constraintStart_toEndOf="@+id/detailImageView"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

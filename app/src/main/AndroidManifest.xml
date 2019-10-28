@@ -11,7 +11,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".ProductsDetailActivity">
+        <activity android:name=".ProductsDetailActivity" android:theme="@style/AppTheme.NoActionBar">
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".ProductsActivity"/>
         </activity>
         <activity android:name=".ProductsActivity" android:launchMode="singleTop">
