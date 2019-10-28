@@ -9,21 +9,16 @@ import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_products_detail.*
-import android.content.SharedPreferences
-import com.google.gson.Gson
-import android.R.id.edit
-
-
-
-
 
 class ProductsDetailActivity : AppCompatActivity() {
+
+    private lateinit var product: Product
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_products_detail)
 
-        val product = intent.getParcelableExtra<Product>("product")
+        product = intent.getParcelableExtra<Product>("product")
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         toolbar.title = product.title
@@ -37,11 +32,6 @@ class ProductsDetailActivity : AppCompatActivity() {
             .placeholder(R.drawable.ic_launcher_foreground)
             .error(R.drawable.ic_launcher_foreground)
             .into(detailImageView)
-
-        val prefsEditor = getPreferences(Context.MODE_PRIVATE).edit()
-            .putString("favorite", Gson().toJson(product))
-        prefsEditor.commit()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -53,15 +43,17 @@ class ProductsDetailActivity : AppCompatActivity() {
         return when (item?.itemId) {
             R.id.action_favorite -> {
                 item.isChecked = !item.isChecked
-
-                val product = Gson().fromJson<Product>(getPreferences(Context.MODE_PRIVATE).getString("favorite", ""), Product::class.java)
-
-                println(product.title)
+                val prefsEditor = PreferenceManager.getDefaultSharedPreferences(this)
 
                 if(item.isChecked) {
                     item.setIcon(R.drawable.ic_favorite_red_24dp)
-
-                } else item.setIcon(R.drawable.ic_favorite_border_red_24dp)
+                    prefsEditor.edit()
+                        .putString(product.title, product.title).commit() // Very lazy - will revisit
+                } else {
+                    item.setIcon(R.drawable.ic_favorite_border_red_24dp)
+                    prefsEditor.edit()
+                        .remove(product.title).commit() // Very lazy - will revisit
+                }
                 return true
             }
             else -> super.onOptionsItemSelected(item)

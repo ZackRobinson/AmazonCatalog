@@ -2,6 +2,7 @@ package Robinson.Zackery.AndroidCodingChallenge
 
 import android.content.Context
 import android.content.Intent
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,8 @@ import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.gson.Gson
+import kotlinx.android.synthetic.main.list_item_products.view.*
 
 class ProductsAdapter internal constructor(private var context: Context) :
     RecyclerView.Adapter<ProductsAdapter.CatalogViewHolder>() {
@@ -21,6 +24,7 @@ class ProductsAdapter internal constructor(private var context: Context) :
         val titleTextView: TextView = itemView.findViewById(R.id.title)
         val authorTextView: TextView = itemView.findViewById(R.id.author)
         val imageView: ImageView = itemView.findViewById(R.id.image)
+        val favoriteView: ImageView = itemView.findViewById(R.id.favorite)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogViewHolder {
@@ -42,6 +46,11 @@ class ProductsAdapter internal constructor(private var context: Context) :
             .placeholder(R.drawable.ic_launcher_foreground)
             .error(R.drawable.ic_launcher_foreground)
             .into(holder.imageView)
+
+        // Shouldn't reference the PreferenceManager here. Will revisit
+        if (PreferenceManager.getDefaultSharedPreferences(context).getString(current.title, "") == current.title) {
+            holder.favoriteView.visibility = View.VISIBLE
+        } else holder.favoriteView.visibility = View.GONE
 
         holder.itemView.setOnClickListener{
             val intent = Intent(holder.itemView.context, ProductsDetailActivity::class.java)
