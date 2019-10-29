@@ -36,6 +36,16 @@ class ProductsAdapter internal constructor(private var context: Context) :
         return products.size
     }
 
+    lateinit var mClickListener: ClickListener
+
+    fun setOnItemClickListener(aClickListener: ClickListener) {
+        mClickListener = aClickListener
+    }
+
+    interface ClickListener {
+        fun onClick(product: Product)
+    }
+
     override fun onBindViewHolder(holder: CatalogViewHolder, position: Int) {
         val current = products[position]
         holder.titleTextView.text = current.title
@@ -52,10 +62,8 @@ class ProductsAdapter internal constructor(private var context: Context) :
             holder.favoriteView.visibility = View.VISIBLE
         } else holder.favoriteView.visibility = View.GONE
 
-        holder.itemView.setOnClickListener{
-            val intent = Intent(holder.itemView.context, ProductsDetailActivity::class.java)
-            intent.putExtra("product", current)
-            holder.itemView.context.startActivity(intent)
+        holder.itemView.setOnClickListener {
+            mClickListener.onClick(current)
         }
     }
 

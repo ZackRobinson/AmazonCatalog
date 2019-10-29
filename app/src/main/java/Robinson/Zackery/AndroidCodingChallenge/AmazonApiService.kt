@@ -14,7 +14,7 @@ interface AmazonApiService {
     companion object {
         fun create(): AmazonApiService {
             val retrofit = Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // Should switch to Kotlin Coroutines
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl("http://de-coding-test.s3.amazonaws.com/")
                 .build()
